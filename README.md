@@ -18,8 +18,37 @@
     <a href="https://github.com/debpalash/VoiceStudio/actions/workflows/ci.yml"><img src="https://img.shields.io/github/actions/workflow/status/debpalash/VoiceStudio/ci.yml?branch=main" alt="CI" /></a>
     <a href="https://github.com/debpalash/VoiceStudio/releases/latest"><img src="https://img.shields.io/github/v/release/debpalash/VoiceStudio" alt="Latest release" /></a>
     <a href="LICENSE"><img src="https://img.shields.io/badge/license-AGPL--3.0-blue" alt="AGPL-3.0" /></a>
+    <a href="https://github.com/debpalash/VoiceStudio"><img src="https://img.shields.io/badge/fork%20of-debpalash%2FVoiceStudio-555" alt="Fork of debpalash/VoiceStudio" /></a>
   </p>
 </div>
+
+> [!NOTE]
+> **VoiceStudio — Community Fork / Extended Edition**, maintained by
+> **[Dedi Nugroho](https://github.com/dedinugroho1)**.
+> This is a modified version of [debpalash/VoiceStudio](https://github.com/debpalash/VoiceStudio),
+> focused on custom AI voice and audio pipelines. It is not the official upstream project
+> and is not endorsed by its maintainers. Every modification is published here under the
+> same [AGPL-3.0](LICENSE) licence — see [Open Source Compliance](#open-source-compliance-agplv3)
+> and the dated [modification log](FORK_CHANGES.md).
+
+## About this fork
+
+The Extended Edition tracks upstream VoiceStudio and adds work aimed at building
+custom voice and audio pipelines on top of its local-first engine stack: new TTS and
+voice-cloning integrations, a leaner local API surface, and repeatable automation.
+Upstream features, install paths, and documentation below remain valid unless the
+[modification log](FORK_CHANGES.md) says otherwise.
+
+| Area | Change | Status |
+|---|---|---|
+| Licensing & compliance | AGPL-3.0 §5(a) modification log ([FORK_CHANGES.md](FORK_CHANGES.md)) and fork notice in [LICENSE-NOTICE.md](LICENSE-NOTICE.md) | Done (2026-10-12) |
+| Documentation | Fork introduction, compliance section, and source-build requirements in this README | Done (2026-10-12) |
+| TTS / voice-clone engines | Integrations for additional TTS and voice-cloning models | Planned |
+| Local API | Endpoint performance and ergonomics for pipeline use | Planned |
+| Automation | Scripted batch workflows (cloning, dubbing, transcription) | Planned |
+
+Items marked *Planned* are not implemented yet; each moves to *Done* with a dated
+entry in [FORK_CHANGES.md](FORK_CHANGES.md) when it lands.
 
 ![A tour of the Electron app: voice cloning, voice design, dubbing, and model management](docs/media/electron/voicestudio.gif)
 
@@ -109,11 +138,34 @@ can also run `npx skills add debpalash/VoiceStudio`.
 <details>
 <summary><strong>Run the Electron preview from source</strong></summary>
 
+| Requirement | Version / note |
+|---|---|
+| Git | Any recent version |
+| Node.js | 22 or newer |
+| Bun | Version pinned in the root `package.json` (`packageManager`) |
+| uv | Used by `bun run setup:api` to create the locked Python environment |
+| Python | 3.11 or newer (provisioned by uv) |
+| Rust / Cargo | Stable; needed to build the native desktop helper and packaged app |
+| Disk | About 5 GB free for the CPU build of PyTorch, more for GPU builds and models |
+
+Upstream:
+
 ```bash
 git clone https://github.com/debpalash/VoiceStudio.git
 cd VoiceStudio
 bun install
 bun run setup:api  # prepare Python dependencies before starting Electron
+bun run dev
+```
+
+This Extended Edition (keeps upstream as a remote for syncing):
+
+```bash
+git clone https://github.com/dedinugroho1/VoiceStudio.git
+cd VoiceStudio
+git remote add upstream https://github.com/debpalash/VoiceStudio.git
+bun install
+bun run setup:api
 bun run dev
 ```
 
@@ -144,6 +196,26 @@ Agent skills: `npx skills add debpalash/VoiceStudio` — choose **voicestudio** 
 **Become a featured partner.** [Apply for a paid placement](https://forms.gle/2PYCvd39hbwijzX37) · [Email us](mailto:partner@voicestudio.sh)
 
 Support development: [Ko-fi](https://ko-fi.com/debpalash) · [PayPal](https://paypal.me/palashCoder) · [Sponsorship details](SPONSORS.md)
+
+## Open Source Compliance (AGPLv3)
+
+This fork is, and will remain, free software under the
+[GNU Affero General Public License v3.0](LICENSE) (`AGPL-3.0-only`) — the same licence
+as the original [debpalash/VoiceStudio](https://github.com/debpalash/VoiceStudio).
+
+- **Licence unchanged.** `LICENSE` is the verbatim AGPL-3.0 text. No file in this fork is
+  relicensed, and no additional restrictions are added (AGPL-3.0 §7, §10).
+- **Original notices preserved.** Copyright 2024-present Palash Debnath and VoiceStudio
+  contributors; see [LICENSE-NOTICE.md](LICENSE-NOTICE.md). Third-party components
+  (the Apache-2.0 `omnivoice/` package, MIT T3 Code components, model weights) keep their
+  own terms.
+- **Modifications are marked and dated** (AGPL-3.0 §5(a)) in [FORK_CHANGES.md](FORK_CHANGES.md).
+  Modifications by Dedi Nugroho are Copyright 2026 Dedi Nugroho, licensed AGPL-3.0-only.
+- **100% public source.** Every change ships in this public repository. Anyone who
+  interacts with a network-hosted deployment of this fork is offered its complete
+  corresponding source here (AGPL-3.0 §13).
+- **Upstream first.** Fixes useful to everyone are offered back to
+  [debpalash/VoiceStudio](https://github.com/debpalash/VoiceStudio) via pull request.
 
 ## License & responsible use
 

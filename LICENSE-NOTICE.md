@@ -8,6 +8,13 @@ AGPL-3.0-only
 
 Copyright 2024-present Palash Debnath and VoiceStudio contributors.
 
+**Modified version.** This copy is the VoiceStudio Community Fork / Extended
+Edition, a modified version of <https://github.com/debpalash/VoiceStudio>
+maintained by Dedi Nugroho at <https://github.com/dedinugroho1/VoiceStudio>.
+Modifications are Copyright 2026 Dedi Nugroho, licensed under the same
+AGPL-3.0-only terms, and dated in [`FORK_CHANGES.md`](FORK_CHANGES.md)
+(AGPL-3.0 §5(a)). The upstream notice below is unchanged.
+
 VoiceStudio is **free and open-source software, licensed under the GNU
 Affero General Public License, Version 3 (AGPL-3.0)**. You are free to use,
 copy, modify, and redistribute it. That **includes commercial and internal
